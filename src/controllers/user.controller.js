@@ -10,11 +10,20 @@ const {
 // Signup User
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
+  if (!username || !email || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
   try {
-    const user = await User.create({ username, email, password });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const user = new User({ username, email, password });
+    await user.save();
     res.status(201).json({ message: "User created successfully", user: user });
   } catch (error) {
-    res.status(400).json({ message: "Error creating user", error: error });
+    res.status(500).json({ message: "Error creating user", error: error });
   }
 };
 

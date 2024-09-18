@@ -13,13 +13,23 @@ app.use(express.json());
 // router
 app.use(routes);
 
+// db connection
+const uri = process.env.DB_URI;
+connectDB(uri);
+
 // server and db connection
-app.listen(port, async () => {
-  try {
-    const uri = process.env.DB_URI;
-    await connectDB(uri);
-    console.log(`connected to port ${port}`);
-  } catch (error) {
-    console.log(`error connecting to server at port ${port}`, error.message);
+
+const Server = app.listen(port, () => {
+  if (process.env.NODE_ENV !== "test") {
+    try {
+      console.log(`Server is running on port ${port}.`);
+    } catch (error) {
+      console.error("error in connecting to server ", error);
+      process.exit(1);
+    }
   }
 });
+
+// server();
+// Export app for testing
+module.exports = { app, Server };
