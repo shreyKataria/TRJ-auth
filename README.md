@@ -137,7 +137,7 @@ GET	        /api/search-user?query=username	   Search user by userId, username, 
 ### User Search by ID or Username
 
 - **Request:**
-  `GET /api/search-user?query=shrey`
+  `GET /api/user/search-user?query=shrey`
 
 - **Response:**
   ```python
@@ -147,7 +147,7 @@ GET	        /api/search-user?query=username	   Search user by userId, username, 
       "email": "shrey@example.com"
   }
   ```
-  `GET /api/search-user?query=s` This will return a response with all users with the letter s
+  `GET /api/user/search-user?query=s` This will return a response with all users with the letter s
 
 ## Testing
 
