@@ -58,7 +58,7 @@ This project is an API built using **Express.js**, designed to handle user authe
 
 ### API Endpoints
 
-$$
+```json
 Method	    Endpoint	                       Description
 POST	    /api/signup	                       Register a new user
 POST	    /api/login	                       Log in a user
@@ -66,7 +66,7 @@ POST	    /api/logout	                       Log out the current user
 POST	    /api/refresh-token	               Get a new access token via refresh token
 GET	        /api/users?page=1&limit=10	       Get paginated list of users
 GET	        /api/search-user?query=username	   Search user by userId, username, or email
-$$
+```
 
 ### Example Requests
 
